@@ -44,15 +44,34 @@ jobs:
       - name: Build (menghasilkan folder dist/)
         run: npm run build
 
+      # Bersihkan input agar tahan salah-copy dari panel Hostinger:
+      # - FTP_SERVER boleh tersalin sebagai "ftp://1.2.3.4" -> prefix dibuang otomatis
+      # - FTP_SERVER_DIR kosong -> "/", dan "/" di akhir ditambahkan otomatis
+      - name: Normalisasi input FTP
+        id: ftp
+        run: |
+          server="${{ secrets.FTP_SERVER }}"
+          server="${server#ftps://}"
+          server="${server#ftp://}"
+          server="${server%%/*}"
+          echo "server=$server" >> "$GITHUB_OUTPUT"
+          dir="${{ secrets.FTP_SERVER_DIR }}"
+          if [ -z "$dir" ]; then dir="/"; fi
+          case "$dir" in
+            */) : ;;
+            *) dir="$dir/" ;;
+          esac
+          echo "dir=$dir" >> "$GITHUB_OUTPUT"
+
       - name: Upload dist/ ke Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          server: ${{ steps.ftp.outputs.server }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp          # ganti ke "ftps" kalau Hostinger mewajibkan FTP over TLS
           port: 21
           local-dir: ./dist/     # HARUS diakhiri "/"
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          server-dir: ${{ steps.ftp.outputs.dir }}
           # Hanya meng-upload file yang berubah (cepat). File state disimpan di server
           # sebagai .ftp-deploy-sync-state.json — biarkan saja, itu normal.
