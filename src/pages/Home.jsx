@@ -6,6 +6,7 @@ import { to } from '../routes'
 import api from '../api'
 import { Icon, ArrowRight, InstagramIcon, TiktokIcon, FacebookIcon, YoutubeIcon } from '../components/icons'
 import CountUp from '../components/CountUp'
+import NewsImage from '../components/NewsImage'
 
 // Render hero title with an italic highlight where {{hl:...}} appears.
 function HeroTitle({ text }) {
@@ -182,7 +183,7 @@ export default function Home() {
           <div className="grid-news">
             {news.map((n, i) => (
               <button key={n.id} className="card svccard rv" onClick={() => go('berita-detail', n.id)} style={{ overflow: 'hidden', textAlign: 'left', display: 'flex', flexDirection: 'column', padding: 0, '--rvd': i * 0.08 + 's' }}>
-                <span className="ph news-img" data-ph={n.img}></span>
+                <NewsImage n={n} className="news-img" />
                 <span className="pad" style={{ display: 'block' }}>
                   <span className={'tag ' + n.tagcls}>{n.type} · {n.cat}</span>
                   <b className="serif" style={{ fontSize: 20, fontWeight: 500, display: 'block', marginTop: 10, lineHeight: 1.2 }}>{n.title}</b>

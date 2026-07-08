@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import api from '../api'
 import { to } from '../routes'
+import NewsImage from '../components/NewsImage'
 
 export default function BeritaDetail() {
   const { id } = useParams()
@@ -30,7 +31,7 @@ export default function BeritaDetail() {
         <span className={'tag ' + n.tagcls}>{n.type} · {n.cat}</span>
         <h1 className="displg" style={{ margin: '12px 0 14px' }}>{n.title}</h1>
         <p className="muted" style={{ fontSize: 14 }}>{n.date} · Oleh {n.author}</p>
-        <div className="ph" data-ph={n.img} style={{ aspectRatio: '16/8', borderRadius: 16, margin: '24px 0' }}></div>
+        <NewsImage n={n} style={{ aspectRatio: '16/8', borderRadius: 16, margin: '24px 0', overflow: 'hidden' }} />
         <div className="lead" style={{ color: 'var(--ink2)' }}>
           {n.body.map((p, i) => <p key={i} style={{ marginBottom: 18 }}>{p}</p>)}
         </div>

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import api from '../api'
 import { to } from '../routes'
 import PageHead from '../components/PageHead'
+import NewsImage from '../components/NewsImage'
 
 export default function Berita() {
   const nav = useNavigate()
@@ -49,7 +50,7 @@ export default function Berita() {
         <div className="grid-news">
           {news.map((n, i) => (
             <button key={n.id} className="card svccard rv" onClick={() => go(n.id)} style={{ overflow: 'hidden', textAlign: 'left', display: 'flex', flexDirection: 'column', padding: 0, '--rvd': (i % 3) * 0.08 + 's' }}>
-              <span className="ph news-img" data-ph={n.img}></span>
+              <NewsImage n={n} className="news-img" />
               <span className="pad" style={{ display: 'block' }}>
                 <span className={'tag ' + n.tagcls}>{n.type} · {n.cat}</span>
                 <b className="serif" style={{ fontSize: 20, fontWeight: 500, display: 'block', marginTop: 10, lineHeight: 1.2 }}>{n.title}</b>
