@@ -70,6 +70,14 @@ jobs:
             echo "hapus secret tersebut lalu buat ulang (New repository secret) dengan nilainya."
             exit 1
           fi
+          # Akun FTP khusus subdomain sudah "terkunci" di foldernya — path absolut
+          # /home/... di FTP_SERVER_DIR justru membuat folder bersarang yang salah.
+          case "$FTP_DIR" in
+            /home/*|/domains/*)
+              echo "::error title=FTP_SERVER_DIR salah::Nilainya path absolut server ($FTP_DIR)."
+              echo "Untuk akun FTP yang direktorinya sudah diset ke folder subdomain, isi '/' saja."
+              exit 1 ;;
+          esac
           server="$FTP_HOST"
           echo "Menguji ftp://$server/ dengan user: $FTP_USER"
           set +e
