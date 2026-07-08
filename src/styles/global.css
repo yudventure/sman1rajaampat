@@ -59,8 +59,8 @@ p{margin:0}
 .topbar a{color:#fff;text-decoration:underline;text-underline-offset:2px}
 .tick{display:flex;align-items:center;justify-content:center;gap:12px;padding:9px 0;font-size:13.5px;position:relative}
 .pill{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:#2a1e08;padding:3px 9px;border-radius:6px;flex:none}
-.ssoc{width:44px;height:44px;border-radius:50%;background:var(--surface);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--sea);transition:.16s}
-.ssoc:hover{background:var(--sea);color:#fff;border-color:var(--sea)}
+.ssoc{width:44px;height:44px;border-radius:50%;background:var(--sea);border:1px solid var(--sea);display:flex;align-items:center;justify-content:center;color:#fff;transition:.16s}
+.ssoc:hover{background:var(--seadeep);color:#fff;border-color:var(--seadeep)}
 /* hero */
 .hero{position:relative;overflow:hidden;background:linear-gradient(115deg,#e9f2fb 0%,#dcebf9 50%,#cfe3f6 100%);min-height:max(600px,calc(min(68vw,1240px)*.5625 + 24px))}
 .herogrid{position:absolute;inset:0;background-image:linear-gradient(rgba(22,102,173,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(22,102,173,.09) 1px,transparent 1px);background-size:46px 46px;-webkit-mask-image:radial-gradient(125% 95% at 28% 18%,#000 0,rgba(0,0,0,.35) 45%,transparent 75%);mask-image:radial-gradient(125% 95% at 28% 18%,#000 0,rgba(0,0,0,.35) 45%,transparent 75%);pointer-events:none;z-index:0}
