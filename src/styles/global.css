@@ -163,6 +163,12 @@ textarea.inp{resize:vertical;min-height:110px}
 @keyframes rev{to{opacity:1;transform:none}}
 @keyframes drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
+/* ---- pointer follower (titik solid + lingkaran transparan mengejar) ---- */
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:9999;opacity:0;transition:opacity .25s}
+.cursor-dot{width:8px;height:8px;background:var(--sea)}
+.cursor-ring{width:40px;height:40px;border:1.5px solid rgba(22,102,173,.4);background:rgba(22,102,173,.08)}
+@media(hover:none),(pointer:coarse){.cursor-dot,.cursor-ring{display:none}}
+
 /* ---- entrance & scroll-reveal (elemen .rv muncul saat masuk viewport) ---- */
 @keyframes heroImg{from{opacity:0;transform:translateX(46px)}to{opacity:1;transform:none}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}

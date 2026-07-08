@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Ticker from './Ticker'
+import CursorFollower from './CursorFollower'
 import Header from './Header'
 import Footer from './Footer'
 
@@ -52,6 +53,7 @@ export default function Layout() {
     <>
       <ScrollToTop />
       <ScrollReveal />
+      <CursorFollower />
       <Ticker />
       <Header />
       <main>
