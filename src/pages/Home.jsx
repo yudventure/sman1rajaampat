@@ -85,7 +85,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="wrap" style={{ position: 'relative', zIndex: 2, paddingTop: 88, paddingBottom: 104 }}>
+        <div className="wrap" style={{ position: 'relative', zIndex: 2, paddingTop: 136, paddingBottom: 104 }}>
           <div style={{ maxWidth: 560 }}>
             <span className="eyebrow reveal">{school.hero.eyebrow}</span>
             <h1 className="dispxl reveal" style={{ marginTop: 18, animationDelay: '.05s' }}>
