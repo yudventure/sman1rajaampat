@@ -5,6 +5,7 @@ import { SERVICES, STATS } from '../data/content'
 import { to } from '../routes'
 import api from '../api'
 import { Icon, ArrowRight, InstagramIcon, TiktokIcon, FacebookIcon, YoutubeIcon } from '../components/icons'
+import CountUp from '../components/CountUp'
 
 // Render hero title with an italic highlight where {{hl:...}} appears.
 function HeroTitle({ text }) {
@@ -85,7 +86,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="wrap" style={{ position: 'relative', zIndex: 2, paddingTop: 184, paddingBottom: 104 }}>
+        <div className="wrap" style={{ position: 'relative', zIndex: 2, paddingTop: 232, paddingBottom: 104 }}>
           <div style={{ maxWidth: 560 }}>
             <span className="eyebrow reveal">{school.hero.eyebrow}</span>
             <h1 className="dispxl reveal" style={{ marginTop: 18, animationDelay: '.05s' }}>
@@ -105,7 +106,7 @@ export default function Home() {
         <img className="secmark" src={school.assets.logo} alt="" />
         <div className="wrap posrel">
           <div className="fx ac jb fxwrap gap16 posrel" style={{ marginBottom: 36 }}>
-            <div>
+            <div className="rv">
               <span className="eyebrow">Layanan Kami</span>
               <h2 className="displg" style={{ marginTop: 12 }}>Semua layanan sekolah,<br />dalam satu pintu.</h2>
             </div>
@@ -119,11 +120,11 @@ export default function Home() {
 
           {/* quick access */}
           <div className="grid-2" style={{ gap: 16, marginBottom: 22 }}>
-            <button className="qa" onClick={() => go('pendaftaran')}>
+            <button className="qa rv" onClick={() => go('pendaftaran')}>
               <span className="svcicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><rect x="4" y="3" width="16" height="18" rx="2" /><path d="M8 8h8M8 12h8M8 16h5" strokeLinecap="round" /></svg></span>
               <span><b style={{ display: 'block', fontSize: 15.5 }}>Cek Status Pendaftaran</b><span className="muted" style={{ fontSize: 13.5 }}>Pantau hasil penerimaan dengan nomor daftar</span></span>
             </button>
-            <button className="qa" onClick={() => go('pengaduan')}>
+            <button className="qa rv" style={{ '--rvd': '.08s' }} onClick={() => go('pengaduan')}>
               <span className="svcicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M4 5h16v11H9l-4 4V5z" strokeLinejoin="round" /><path d="M8 10h8M8 13h5" strokeLinecap="round" /></svg></span>
               <span><b style={{ display: 'block', fontSize: 15.5 }}>Pantau Aduan</b><span className="muted" style={{ fontSize: 13.5 }}>Lacak status aduan dengan kode tiket</span></span>
             </button>
@@ -131,8 +132,8 @@ export default function Home() {
 
           {/* service cards */}
           <div className="grid-4">
-            {homeServices.map((s) => (
-              <button key={s.title} className="card pad svccard" onClick={() => go(s.route)} style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-start' }}>
+            {homeServices.map((s, i) => (
+              <button key={s.title} className="card pad svccard rv" onClick={() => go(s.route)} style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-start', '--rvd': i * 0.08 + 's' }}>
                 <span className="svcicon" style={{ width: 48, height: 48 }}><Icon name={s.icon} /></span>
                 <span>
                   <b className="serif" style={{ fontSize: 19, fontWeight: 500, display: 'block' }}>{s.title}</b>
@@ -141,7 +142,7 @@ export default function Home() {
               </button>
             ))}
           </div>
-          <div className="tc" style={{ marginTop: 30 }}>
+          <div className="tc rv" style={{ marginTop: 30 }}>
             <button className="link-arrow" onClick={() => go('layanan')}>Lihat semua layanan →</button>
           </div>
         </div>
@@ -152,15 +153,15 @@ export default function Home() {
         <div className="wrap sec posrel">
           <img className="statboy" src={school.assets.medalistImage} alt={`Siswa berprestasi ${school.shortName}`} />
           <div className="grid-2" style={{ alignItems: 'center', gap: 48 }}>
-            <div style={{ maxWidth: 330 }}>
+            <div className="rv rv-l" style={{ maxWidth: 330 }}>
               <span className="eyebrow" style={{ color: '#9cc4ea' }}>Dalam Angka</span>
               <h2 className="displg" style={{ color: '#fff', marginTop: 12 }}>Sekolah bahari yang terus bertumbuh.</h2>
               <p style={{ color: '#bcd0e8', marginTop: 14, maxWidth: 420 }}>Data ringkas capaian dan skala {school.name} tahun ajaran berjalan.</p>
             </div>
             <div className="statbar2">
-              {STATS.map((st) => (
-                <div className="glasscard" key={st.l}>
-                  <div className="serif" style={{ fontSize: 40, fontWeight: 500, lineHeight: 1, color: '#fff' }}>{st.n}</div>
+              {STATS.map((st, i) => (
+                <div className="glasscard rv" key={st.l} style={{ '--rvd': i * 0.09 + 's' }}>
+                  <div className="serif" style={{ fontSize: 40, fontWeight: 500, lineHeight: 1, color: '#fff' }}><CountUp value={st.n} /></div>
                   <div style={{ fontSize: 13.5, color: '#a9c4e2', marginTop: 8 }}>{st.l}</div>
                 </div>
               ))}
@@ -173,14 +174,14 @@ export default function Home() {
       <section className="sec">
         <div className="wrap">
           <div className="fx ac jb fxwrap gap16" style={{ marginBottom: 34 }}>
-            <div>
+            <div className="rv">
               <span className="eyebrow">Terkini</span>
               <h2 className="displg" style={{ marginTop: 12 }}>Berita & Pengumuman</h2>
             </div>
           </div>
           <div className="grid-news">
-            {news.map((n) => (
-              <button key={n.id} className="card svccard" onClick={() => go('berita-detail', n.id)} style={{ overflow: 'hidden', textAlign: 'left', display: 'flex', flexDirection: 'column', padding: 0 }}>
+            {news.map((n, i) => (
+              <button key={n.id} className="card svccard rv" onClick={() => go('berita-detail', n.id)} style={{ overflow: 'hidden', textAlign: 'left', display: 'flex', flexDirection: 'column', padding: 0, '--rvd': i * 0.08 + 's' }}>
                 <span className="ph news-img" data-ph={n.img}></span>
                 <span className="pad" style={{ display: 'block' }}>
                   <span className={'tag ' + n.tagcls}>{n.type} · {n.cat}</span>
@@ -191,7 +192,7 @@ export default function Home() {
               </button>
             ))}
           </div>
-          <div className="tc" style={{ marginTop: 30 }}>
+          <div className="tc rv" style={{ marginTop: 30 }}>
             <button className="link-arrow" onClick={() => go('berita')}>Lihat semua →</button>
           </div>
         </div>

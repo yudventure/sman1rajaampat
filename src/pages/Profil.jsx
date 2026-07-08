@@ -27,7 +27,7 @@ export default function Profil() {
       {SAMBUTAN.map((s, i) => (
         <section
           key={i}
-          className="posrel"
+          className="posrel rv"
           style={{ background: 'var(--seadeep)', color: '#fff', zIndex: 0, marginTop: i === 0 ? 44 : 92 }}
         >
           <div className="wrap sec posrel" style={{ paddingTop: 60, paddingBottom: 60 }}>
@@ -51,7 +51,7 @@ export default function Profil() {
       <section className="wrap sec" style={{ paddingTop: 44 }}>
         <div className="grid-3">
           {VISI_MISI.map(([t, d, ic], i) => (
-            <div className="card pad" key={i}>
+            <div className="card pad rv" key={i} style={{ '--rvd': i * 0.08 + 's' }}>
               <div className="svcicon" style={{ marginBottom: 16, fontSize: 22 }}>{ic}</div>
               <h3 className="dispmd">{t}</h3>
               <p className="muted" style={{ marginTop: 10, lineHeight: 1.6 }}>{d}</p>
@@ -67,7 +67,7 @@ export default function Profil() {
           <h2 className="displg" style={{ marginTop: 12, marginBottom: 32 }}>Guru & Staf</h2>
           <div className="grid-4">
             {GURU.map((g, i) => (
-              <div className="card pad" key={i} style={{ textAlign: 'center' }}>
+              <div className="card pad rv" key={i} style={{ textAlign: 'center', '--rvd': (i % 4) * 0.06 + 's' }}>
                 <div className="avatar" style={{ margin: '0 auto 14px' }}>{initials(g.n)}</div>
                 <b style={{ display: 'block', fontSize: 15 }}>{g.n}</b>
                 <span className="muted" style={{ fontSize: 13 }}>{g.j}</span>
@@ -106,7 +106,7 @@ export default function Profil() {
             <h2 className="displg" style={{ margin: '12px 0 28px' }}>Sejarah Singkat</h2>
             <div>
               {SEJARAH.map((e, i) => (
-                <div className="tl-item" key={i}>
+                <div className="tl-item rv rv-l" key={i} style={{ '--rvd': i * 0.07 + 's' }}>
                   <span className="tl-dot"></span>
                   <div className="tl-year">{e.y}</div>
                   <b style={{ display: 'block', marginTop: 2 }}>{e.t}</b>
@@ -120,7 +120,7 @@ export default function Profil() {
             <h2 className="displg" style={{ margin: '12px 0 24px' }}>Ruang untuk bertumbuh</h2>
             <div className="fx col gap12">
               {FASILITAS.map((f, i) => (
-                <div className="card" key={i} style={{ padding: '16px 18px', display: 'flex', gap: 14, alignItems: 'center' }}>
+                <div className="card rv rv-r" key={i} style={{ padding: '16px 18px', display: 'flex', gap: 14, alignItems: 'center', '--rvd': i * 0.05 + 's' }}>
                   <span className="svcicon" style={{ width: 44, height: 44 }}><Icon name={f.ic} /></span>
                   <span><b style={{ display: 'block' }}>{f.n}</b><span className="muted" style={{ fontSize: 13.5 }}>{f.d}</span></span>
                 </div>

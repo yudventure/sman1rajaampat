@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { school } from '../config/school'
 import { NAV } from '../data/content'
 import { to, routeFromPath } from '../routes'
@@ -8,6 +8,15 @@ import { LoginIcon } from './icons'
 
 export default function Header() {
   const [mob, setMob] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  // Bayangan halus di header saat halaman di-scroll.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
   const { user } = useAuth()
   const loc = useLocation()
   const nav = useNavigate()
@@ -19,7 +28,7 @@ export default function Header() {
   }
 
   return (
-    <header className="hd">
+    <header className={'hd' + (scrolled ? ' scrolled' : '')}>
       <div className="wrap fx ac jb hdrow">
         <button className="brand" onClick={() => goto('home')} style={{ background: 'none', border: 0 }}>
           <img className="crest" src={school.assets.logo} alt={`Logo ${school.shortName}`} />

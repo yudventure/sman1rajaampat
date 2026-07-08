@@ -40,7 +40,8 @@ p{margin:0}
 .divider{height:1px;background:var(--line);border:0}
 .link-arrow{display:inline-flex;align-items:center;gap:7px;font-weight:600;font-size:15px;color:var(--sea);cursor:pointer;background:none;border:0;padding:0;font-family:'Instrument Sans',sans-serif}
 .link-arrow:hover{gap:10px}
-.hd{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.hd{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);transition:box-shadow .25s}
+.hd.scrolled{box-shadow:0 10px 30px -16px rgba(13,71,126,.28)}
 .hdrow{height:70px}
 .brand{display:flex;align-items:center;gap:12px;cursor:pointer}
 .crest{width:46px;height:46px;object-fit:contain;flex:none;display:block}
@@ -64,8 +65,8 @@ p{margin:0}
 /* hero */
 .hero{position:relative;overflow:hidden;background:linear-gradient(115deg,#e9f2fb 0%,#dcebf9 50%,#cfe3f6 100%);min-height:max(600px,calc(min(68vw,1240px)*.5625 + 24px))}
 .herogrid{position:absolute;inset:0;background-image:linear-gradient(rgba(22,102,173,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(22,102,173,.09) 1px,transparent 1px);background-size:46px 46px;-webkit-mask-image:radial-gradient(125% 95% at 28% 18%,#000 0,rgba(0,0,0,.35) 45%,transparent 75%);mask-image:radial-gradient(125% 95% at 28% 18%,#000 0,rgba(0,0,0,.35) 45%,transparent 75%);pointer-events:none;z-index:0}
-.hand{position:absolute;z-index:3;pointer-events:none;font-family:'Caveat',cursive;font-weight:700;color:var(--sea);line-height:.98;animation:drift 5s ease-in-out infinite}
-.doodwrap{position:absolute;right:0;bottom:0;width:min(68%,1240px);aspect-ratio:16/9;pointer-events:none;z-index:1}
+.hand{position:absolute;z-index:3;pointer-events:none;font-family:'Caveat',cursive;font-weight:700;color:var(--sea);line-height:.98;animation:handIn .8s cubic-bezier(.34,1.56,.64,1) .75s both,drift 5s ease-in-out 1.7s infinite}
+.doodwrap{position:absolute;right:0;bottom:0;width:min(68%,1240px);aspect-ratio:16/9;pointer-events:none;z-index:1;animation:fadeIn 1.4s .5s both}
 .handwrap{position:absolute;right:0;bottom:0;width:min(68%,1240px);aspect-ratio:16/9;pointer-events:none;z-index:3}
 .doodle{position:absolute;pointer-events:none;color:var(--sea);opacity:.45;animation:drift 6s ease-in-out infinite}
 .doodle svg{display:block}
@@ -84,12 +85,12 @@ p{margin:0}
 @media(max-width:1100px){.doodwrap,.handwrap{display:none}}
 @media(max-width:960px){.lay-dood{display:none}}
 .hero-notch{position:absolute;right:0;bottom:0;z-index:1;width:max(24%,300px);height:104px;background:var(--paper);border-top-left-radius:38px;pointer-events:none}
-.hero-soc{position:absolute;left:calc(100% - max(24%,300px) + 30px);bottom:13px;z-index:4;display:flex;flex-direction:column;align-items:center;gap:7px}
+.hero-soc{position:absolute;left:calc(100% - max(24%,300px) + 30px);bottom:13px;z-index:4;display:flex;flex-direction:column;align-items:center;gap:7px;animation:rvIn .7s cubic-bezier(.2,.7,.3,1) .55s both}
 .hero-soc-t{font-size:12.5px;font-weight:700;letter-spacing:.04em;color:var(--seadeep)}
 .hero-soc .ssoc{width:52px;height:52px}
 .hero-notch-r{position:absolute;right:0;bottom:104px;z-index:1;width:104px;height:104px;background:radial-gradient(circle at 0 0,rgba(0,0,0,0) 103.5px,var(--paper) 104px);pointer-events:none}
 .hero-notch-l{position:absolute;right:max(24%,300px);bottom:0;z-index:1;width:32px;height:32px;background:radial-gradient(circle at 0 0,rgba(0,0,0,0) 31.5px,var(--paper) 32px);pointer-events:none}
-.heroscene{position:absolute;inset:0 0 0 auto;width:68%;max-width:1240px;background-repeat:no-repeat;background-position:right bottom;background-size:contain;pointer-events:none}
+.heroscene{position:absolute;inset:0 0 0 auto;width:68%;max-width:1240px;background-repeat:no-repeat;background-position:right bottom;background-size:contain;pointer-events:none;animation:heroImg .9s cubic-bezier(.2,.7,.3,1) .15s both}
 @media(max-width:820px){.heroscene{opacity:.3;width:100%}.hero-notch,.hero-notch-r,.hero-notch-l,.hero-soc{display:none}}
 .blob{position:absolute;border-radius:50%}
 .stat{text-align:left}
@@ -161,6 +162,22 @@ textarea.inp{resize:vertical;min-height:110px}
 .reveal{opacity:0;transform:translateY(16px);animation:rev .6s cubic-bezier(.2,.7,.3,1) forwards}
 @keyframes rev{to{opacity:1;transform:none}}
 @keyframes drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* ---- entrance & scroll-reveal (elemen .rv muncul saat masuk viewport) ---- */
+@keyframes heroImg{from{opacity:0;transform:translateX(46px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes handIn{from{opacity:0;transform:translateY(16px) scale(.85)}to{opacity:1;transform:none}}
+@keyframes rvIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes rvInL{from{opacity:0;transform:translateX(-34px)}to{opacity:1;transform:none}}
+@keyframes rvInR{from{opacity:0;transform:translateX(34px)}to{opacity:1;transform:none}}
+.rv{opacity:0}
+.rv.in{animation:rvIn .7s cubic-bezier(.2,.7,.3,1) var(--rvd,0s) both}
+.rv-l.in{animation-name:rvInL}
+.rv-r.in{animation-name:rvInR}
+@media(prefers-reduced-motion:reduce){
+  .reveal,.heroscene,.doodwrap,.hero-soc,.hand,.doodle,.rv.in{animation:none}
+  .reveal,.rv{opacity:1;transform:none}
+}
 
 /* ---- flex/util helpers (were provided by prototype runtime) ---- */
 .fx{display:flex}

@@ -25,7 +25,7 @@ export default function Berita() {
       />
 
       <section className="wrap" style={{ paddingTop: 26 }}>
-        <div className="card" style={{ background: 'var(--seadeep)', border: 'none', padding: '24px 26px' }}>
+        <div className="card rv" style={{ background: 'var(--seadeep)', border: 'none', padding: '24px 26px' }}>
           <span className="pill">Pengumuman Penting</span>
           <div className="fx col gap12" style={{ marginTop: 14 }}>
             {important.map((n) => (
@@ -47,8 +47,8 @@ export default function Berita() {
       <section className="wrap sec" style={{ paddingTop: 40 }}>
         <h2 className="displg" style={{ marginBottom: 26 }}>Semua Berita</h2>
         <div className="grid-news">
-          {news.map((n) => (
-            <button key={n.id} className="card svccard" onClick={() => go(n.id)} style={{ overflow: 'hidden', textAlign: 'left', display: 'flex', flexDirection: 'column', padding: 0 }}>
+          {news.map((n, i) => (
+            <button key={n.id} className="card svccard rv" onClick={() => go(n.id)} style={{ overflow: 'hidden', textAlign: 'left', display: 'flex', flexDirection: 'column', padding: 0, '--rvd': (i % 3) * 0.08 + 's' }}>
               <span className="ph news-img" data-ph={n.img}></span>
               <span className="pad" style={{ display: 'block' }}>
                 <span className={'tag ' + n.tagcls}>{n.type} · {n.cat}</span>

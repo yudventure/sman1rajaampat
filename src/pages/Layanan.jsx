@@ -18,9 +18,9 @@ export default function Layanan() {
           {SERVICES.map((x, i) => (
             <button
               key={i}
-              className="card pad svccard"
+              className="card pad svccard rv"
               onClick={() => nav(to(x.route))}
-              style={{ textAlign: 'left', display: 'flex', gap: 18, alignItems: 'flex-start' }}
+              style={{ textAlign: 'left', display: 'flex', gap: 18, alignItems: 'flex-start', '--rvd': (i % 2) * 0.08 + 's' }}
             >
               <span className="svcicon"><Icon name={x.icon} /></span>
               <span>

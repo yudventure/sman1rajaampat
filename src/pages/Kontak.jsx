@@ -23,7 +23,7 @@ export default function Kontak() {
           <div>
             <div className="fx col gap16">
               {items.map((it, i) => (
-                <div key={i} className="card" style={{ padding: '18px 20px' }}>
+                <div key={i} className="card rv" style={{ padding: '18px 20px', '--rvd': i * 0.06 + 's' }}>
                   <div className="eyebrow">{it[0]}</div>
                   <div style={{ marginTop: 6, lineHeight: 1.5 }}>{it[1]}</div>
                 </div>
@@ -37,7 +37,7 @@ export default function Kontak() {
             </div>
           </div>
 
-          <div>
+          <div className="rv rv-r">
             <div className="map-ph">
               <div style={{ position: 'absolute', inset: 0, background: 'repeating-linear-gradient(0deg,rgba(255,255,255,.35),rgba(255,255,255,.35) 1px,transparent 1px,transparent 40px),repeating-linear-gradient(90deg,rgba(255,255,255,.35),rgba(255,255,255,.35) 1px,transparent 1px,transparent 40px)' }}></div>
               <div className="mappin">
