@@ -1,16 +1,19 @@
 # Otomatis: build React (Vite) lalu upload hasilnya ke subdomain Hostinger via FTP.
 # Setiap kali kamu "push" ke branch di bawah, situs langsung ter-update.
 #
-# YANG PERLU DIISI (GitHub → Settings → Secrets and variables → Actions → New repository secret):
-#   FTP_SERVER      -> host FTP dari Hostinger (mis. 145.14.x.x  ATAU  ftp.namadomainmu.com)
-#   FTP_USERNAME    -> username akun FTP Hostinger
-#   FTP_PASSWORD    -> password akun FTP Hostinger
-#   FTP_SERVER_DIR  -> folder tujuan (document root subdomain), HARUS diakhiri "/"
-#                      contoh Hostinger: /domains/websiteku.digital/public_html/sman1rajaampat/
-#                      (atau: /public_html/sman1rajaampat/  — cek di File Manager)
+# RESEP TERUJI (Hostinger):
+#   1. Buat SUBDOMAIN di hPanel (Domain → Subdomain) → foldernya public_html/<nama-sub>
+#   2. Buat AKUN FTP KHUSUS (File → Akun FTP) dengan Direktori = /public_html/<nama-sub>
+#   3. Isi 4 secrets (GitHub → Settings → Secrets and variables → Actions):
+#        FTP_SERVER      -> IP/host FTP TANPA awalan ftp://   (mis. 46.202.138.192)
+#        FTP_USERNAME    -> username akun FTP khusus tadi     (mis. u509575013.namasub)
+#        FTP_PASSWORD    -> password akun FTP khusus tadi
+#        FTP_SERVER_DIR  -> /   (satu garis miring saja — akun sudah terkunci di folder sub!)
+#   4. Push → live. Pre-flight di bawah akan menyebut penyebabnya dengan jelas kalau ada
+#      yang salah (secret kosong, salah password, path absolut, dsb).
 #
-# Untuk sekolah lain: cukup copy repo ini, ubah src/config/school.js + src/data/content.js +
-# gambar di src/assets/, lalu set FTP_SERVER_DIR ke folder subdomain sekolah tersebut.
+# Untuk sekolah lain: copy repo ini, ubah src/config/school.js + src/data/content.js +
+# gambar di src/assets/, lalu ulangi langkah 1-3 untuk subdomain sekolah tersebut.
 
 name: Deploy ke Hostinger
 

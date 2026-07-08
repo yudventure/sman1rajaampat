@@ -33,25 +33,31 @@ GitHub**, GitHub Actions otomatis menjalankan `npm run build` lalu meng-upload f
 > Catatan: hosting shared **tidak bisa** menjalankan `npm run build` sendiri. Karena itu
 > build dilakukan di GitHub Actions, baru hasilnya (file statis) yang dikirim ke Hostinger.
 
-**Setup sekali per subdomain:**
+**Setup sekali per subdomain (resep teruji):**
 
-1. **Buat akun FTP di Hostinger** — hPanel → *Files* → **FTP Accounts**. Catat: **Host/IP**,
-   **Username**, **Password**, dan **folder** (document root subdomain).
-2. **Cari path folder subdomain** lewat File Manager, mis.
-   `/domains/websiteku.digital/public_html/sman1rajaampat/` (atau `/public_html/sman1rajaampat/`).
-3. **Tambahkan Secrets di GitHub** — repo → *Settings* → *Secrets and variables* → *Actions*
-   → **New repository secret**:
-   | Secret | Isi |
-   |--------|-----|
-   | `FTP_SERVER` | Host/IP FTP Hostinger |
-   | `FTP_USERNAME` | Username FTP |
-   | `FTP_PASSWORD` | Password FTP |
-   | `FTP_SERVER_DIR` | Path folder subdomain, **diakhiri `/`** |
-4. **Push apa pun** (atau jalankan manual: tab *Actions* → *Deploy ke Hostinger* → *Run
-   workflow*). Tunggu ±1–2 menit → subdomain langsung ter-update.
+1. **Buat subdomain** — hPanel → *Domain* → **Subdomain** → mis. `namasekolah` →
+   foldernya otomatis `public_html/namasekolah`.
+2. **Buat akun FTP khusus** — hPanel → *File* → **Akun FTP** → *Buat akun FTP baru* →
+   **Direktori: `/public_html/namasekolah`** (ini kuncinya: akun "terkunci" di folder
+   subdomain). Catat username lengkapnya (mis. `u509575013.namasekolah`) & password.
+3. **Tambahkan 4 Secrets di GitHub** — repo → *Settings* → *Secrets and variables* →
+   *Actions* → **New repository secret**:
+   | Secret | Isi | Awas |
+   |--------|-----|------|
+   | `FTP_SERVER` | IP/host FTP, mis. `46.202.138.192` | **tanpa** awalan `ftp://` |
+   | `FTP_USERNAME` | username akun FTP khusus | bukan akun utama |
+   | `FTP_PASSWORD` | password akun FTP khusus | |
+   | `FTP_SERVER_DIR` | `/` | **satu garis miring saja** — bukan path `/home/...` |
+4. **Push apa pun** (atau tab *Actions* → *Deploy ke Hostinger* → *Run workflow*).
+   ±1 menit → subdomain live.
+
+> Workflow punya **pre-flight check**: kalau ada secret kosong, password salah, awalan
+> `ftp://` ikut tersalin, atau `FTP_SERVER_DIR` berisi path absolut — log Actions akan
+> menyebut masalah & solusinya secara eksplisit. Kalau mengedit secret, lebih aman
+> **hapus lalu buat ulang** (kolom edit selalu tampil kosong dan mudah tersimpan kosong).
 
 **Untuk banyak sekolah:** copy repo ini per sekolah, ubah `src/config/school.js` +
-`src/data/content.js` + gambar `src/assets/`, lalu isi `FTP_SERVER_DIR` ke folder subdomain
+`src/data/content.js` + gambar `src/assets/`, lalu ulangi langkah 1–3 untuk subdomain
 sekolah tsb. Tiap repo otomatis men-deploy ke subdomain-nya masing-masing.
 
 ---
