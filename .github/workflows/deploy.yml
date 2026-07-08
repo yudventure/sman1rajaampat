@@ -32,18 +32,6 @@ jobs:
       - name: Ambil kode
         uses: actions/checkout@v4
 
-      - name: Siapkan Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-
-      - name: Install dependency
-        run: npm ci
-
-      - name: Build (menghasilkan folder dist/)
-        run: npm run build
-
       # Bersihkan input agar tahan salah-copy dari panel Hostinger:
       # - FTP_SERVER boleh tersalin sebagai "ftp://1.2.3.4" -> prefix dibuang otomatis
       # - FTP_SERVER_DIR kosong -> "/", dan "/" di akhir ditambahkan otomatis
@@ -62,6 +50,54 @@ jobs:
             *) dir="$dir/" ;;
           esac
           echo "dir=$dir" >> "$GITHUB_OUTPUT"
+
+      # Gagal cepat dengan pesan yang jelas kalau server/username/password salah,
+      # SEBELUM buang waktu build. Password tidak pernah dicetak ke log.
+      - name: Tes koneksi & login FTP (pre-flight)
+        env:
+          FTP_USER: ${{ secrets.FTP_USERNAME }}
+          FTP_PASS: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          server="${{ steps.ftp.outputs.server }}"
+          echo "Menguji ftp://$server/ dengan user: $FTP_USER"
+          set +e
+          out=$(curl -sS --max-time 45 "ftp://$server/" --user "$FTP_USER:$FTP_PASS" 2>&1)
+          rc=$?
+          set -e
+          if [ $rc -ne 0 ]; then
+            echo "::error title=Koneksi FTP gagal::$out"
+            echo ""
+            echo "──────── DIAGNOSIS ────────"
+            case "$out" in
+              *"530"*|*"Access denied"*|*"login"*|*"Login"*)
+                echo "→ USERNAME atau PASSWORD salah."
+                echo "  Cara pasti: Hostinger → Akun FTP → 'Ubah password' pada akun ini,"
+                echo "  buat password baru, lalu perbarui secret FTP_PASSWORD di GitHub." ;;
+              *"resolve"*|*"Could not resolve"*)
+                echo "→ FTP_SERVER salah / tidak dikenal: '$server'" ;;
+              *"timed out"*|*"timeout"*)
+                echo "→ Server tidak menjawab di port 21 (timeout)." ;;
+              *"SSL"*|*"TLS"*|*"encryption"*)
+                echo "→ Server mewajibkan FTPS. Ganti 'protocol: ftp' menjadi 'ftps' di workflow ini." ;;
+              *)
+                echo "→ Lihat pesan error di atas." ;;
+            esac
+            exit 1
+          fi
+          echo "Login FTP OK ✓ — isi direktori root akun:"
+          echo "$out" | head -20
+
+      - name: Siapkan Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependency
+        run: npm ci
+
+      - name: Build (menghasilkan folder dist/)
+        run: npm run build
 
       - name: Upload dist/ ke Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
