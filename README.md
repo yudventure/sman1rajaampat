@@ -24,6 +24,38 @@ apa pun **tanpa konfigurasi server** dan tanpa error saat halaman di-refresh.
 
 ---
 
+## ⚡ Auto-Deploy ke Hostinger (push → live otomatis)
+
+Sudah tersedia workflow **`.github/workflows/deploy.yml`**: setiap kali kamu **push ke
+GitHub**, GitHub Actions otomatis menjalankan `npm run build` lalu meng-upload folder
+`dist/` ke subdomain via **FTP**. Kamu tidak perlu build/upload manual lagi.
+
+> Catatan: hosting shared **tidak bisa** menjalankan `npm run build` sendiri. Karena itu
+> build dilakukan di GitHub Actions, baru hasilnya (file statis) yang dikirim ke Hostinger.
+
+**Setup sekali per subdomain:**
+
+1. **Buat akun FTP di Hostinger** — hPanel → *Files* → **FTP Accounts**. Catat: **Host/IP**,
+   **Username**, **Password**, dan **folder** (document root subdomain).
+2. **Cari path folder subdomain** lewat File Manager, mis.
+   `/domains/websiteku.digital/public_html/sman1rajaampat/` (atau `/public_html/sman1rajaampat/`).
+3. **Tambahkan Secrets di GitHub** — repo → *Settings* → *Secrets and variables* → *Actions*
+   → **New repository secret**:
+   | Secret | Isi |
+   |--------|-----|
+   | `FTP_SERVER` | Host/IP FTP Hostinger |
+   | `FTP_USERNAME` | Username FTP |
+   | `FTP_PASSWORD` | Password FTP |
+   | `FTP_SERVER_DIR` | Path folder subdomain, **diakhiri `/`** |
+4. **Push apa pun** (atau jalankan manual: tab *Actions* → *Deploy ke Hostinger* → *Run
+   workflow*). Tunggu ±1–2 menit → subdomain langsung ter-update.
+
+**Untuk banyak sekolah:** copy repo ini per sekolah, ubah `src/config/school.js` +
+`src/data/content.js` + gambar `src/assets/`, lalu isi `FTP_SERVER_DIR` ke folder subdomain
+sekolah tsb. Tiap repo otomatis men-deploy ke subdomain-nya masing-masing.
+
+---
+
 ## ✏️ Cara Rebrand untuk Sekolah Baru (cepat)
 
 Semua yang berbeda antar-sekolah terkumpul di **dua file** + **lima gambar**:

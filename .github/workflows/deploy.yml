@@ -1,0 +1,58 @@
+# Otomatis: build React (Vite) lalu upload hasilnya ke subdomain Hostinger via FTP.
+# Setiap kali kamu "push" ke branch di bawah, situs langsung ter-update.
+#
+# YANG PERLU DIISI (GitHub → Settings → Secrets and variables → Actions → New repository secret):
+#   FTP_SERVER      -> host FTP dari Hostinger (mis. 145.14.x.x  ATAU  ftp.namadomainmu.com)
+#   FTP_USERNAME    -> username akun FTP Hostinger
+#   FTP_PASSWORD    -> password akun FTP Hostinger
+#   FTP_SERVER_DIR  -> folder tujuan (document root subdomain), HARUS diakhiri "/"
+#                      contoh Hostinger: /domains/websiteku.digital/public_html/sman1rajaampat/
+#                      (atau: /public_html/sman1rajaampat/  — cek di File Manager)
+#
+# Untuk sekolah lain: cukup copy repo ini, ubah src/config/school.js + src/data/content.js +
+# gambar di src/assets/, lalu set FTP_SERVER_DIR ke folder subdomain sekolah tersebut.
+
+name: Deploy ke Hostinger
+
+on:
+  push:
+    branches:
+      - claude/portal-sman-1-raja-ampat-8yxuqm
+      - main
+  workflow_dispatch: {}   # bisa juga dijalankan manual dari tab Actions
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ambil kode
+        uses: actions/checkout@v4
+
+      - name: Siapkan Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependency
+        run: npm ci
+
+      - name: Build (menghasilkan folder dist/)
+        run: npm run build
+
+      - name: Upload dist/ ke Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp          # ganti ke "ftps" kalau Hostinger mewajibkan FTP over TLS
+          port: 21
+          local-dir: ./dist/     # HARUS diakhiri "/"
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          # Hanya meng-upload file yang berubah (cepat). File state disimpan di server
+          # sebagai .ftp-deploy-sync-state.json — biarkan saja, itu normal.
