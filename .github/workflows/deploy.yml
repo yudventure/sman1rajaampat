@@ -59,6 +59,17 @@ jobs:
           FTP_USER: ${{ secrets.FTP_USERNAME }}
           FTP_PASS: ${{ secrets.FTP_PASSWORD }}
         run: |
+          # Pastikan tidak ada secret yang kosong — sebut namanya kalau ada.
+          missing=""
+          [ -z "$FTP_HOST" ] && missing="$missing FTP_SERVER"
+          [ -z "$FTP_USER" ] && missing="$missing FTP_USERNAME"
+          [ -z "$FTP_PASS" ] && missing="$missing FTP_PASSWORD"
+          if [ -n "$missing" ]; then
+            echo "::error title=Secret kosong::Secret berikut KOSONG atau tidak terbaca:$missing"
+            echo "Perbaiki: GitHub → Settings → Secrets and variables → Actions →"
+            echo "hapus secret tersebut lalu buat ulang (New repository secret) dengan nilainya."
+            exit 1
+          fi
           server="$FTP_HOST"
           echo "Menguji ftp://$server/ dengan user: $FTP_USER"
           set +e
