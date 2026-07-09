@@ -1,0 +1,8 @@
+# index.html jangan di-cache browser — supaya setiap deploy langsung terlihat
+# tanpa hard refresh. File assets/* aman di-cache lama karena namanya ber-hash.
+<Files "index.html">
+  Header set Cache-Control "no-cache, must-revalidate"
+</Files>
+<FilesMatch "\.(js|css|png|jpg|jpeg|webp|svg|woff2?)$">
+  Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>

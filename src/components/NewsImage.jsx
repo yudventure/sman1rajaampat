@@ -1,18 +1,22 @@
 import { useState } from 'react'
 
-/* Gambar berita dengan fallback: memuat n.imgUrl di atas placeholder
-   bergaris; kalau gambar gagal dimuat, placeholder berlabel (data-ph)
-   tetap tampil sehingga layout tidak pernah rusak. */
+/* Gambar berita dengan rantai fallback:
+   1. n.imgUrl       — foto topikal (kata kunci relevan dengan berita)
+   2. n.imgFallback  — foto cadangan dari layanan yang sangat stabil
+   3. placeholder bergaris berlabel (data-ph) — layout tidak pernah rusak
+   Ganti imgUrl dengan foto asli sekolah di src/data/content.js kapan saja. */
 export default function NewsImage({ n, className = '', style }) {
-  const [failed, setFailed] = useState(false)
+  const urls = [n.imgUrl, n.imgFallback].filter(Boolean)
+  const [idx, setIdx] = useState(0)
   return (
     <span className={('ph ' + className).trim()} data-ph={n.img} style={{ display: 'block', ...style }}>
-      {!failed && n.imgUrl ? (
+      {idx < urls.length ? (
         <img
-          src={n.imgUrl}
+          key={urls[idx]}
+          src={urls[idx]}
           alt={n.title}
           loading="lazy"
-          onError={() => setFailed(true)}
+          onError={() => setIdx((i) => i + 1)}
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 1 }}
         />
       ) : null}

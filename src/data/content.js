@@ -8,7 +8,7 @@
 export const NEWS = [
   {
     id: 1, type: 'Pengumuman', cat: 'Akademik', date: '2 Juli 2026', author: 'Tata Usaha',
-    img: 'Foto ujian', imgUrl: 'https://loremflickr.com/800/500/classroom,exam?lock=11', tagcls: 'ann', important: true,
+    img: 'Foto ujian', imgUrl: 'https://loremflickr.com/800/500/classroom,exam?lock=11', imgFallback: 'https://picsum.photos/seed/sekolah1/800/500', tagcls: 'ann', important: true,
     title: 'Jadwal Ujian Akhir Semester Ganjil 2025/2026',
     summary: 'Ujian Akhir Semester Ganjil digelar 14–22 Juli 2026. Simak jadwal lengkap per jenjang.',
     body: [
@@ -19,7 +19,7 @@ export const NEWS = [
   },
   {
     id: 2, type: 'Berita', cat: 'Prestasi', date: '28 Juni 2026', author: 'Humas Sekolah',
-    img: 'Tim juara', imgUrl: 'https://loremflickr.com/800/500/trophy,winner?lock=22', tagcls: '', important: false,
+    img: 'Tim juara', imgUrl: 'https://loremflickr.com/800/500/trophy,winner?lock=22', imgFallback: 'https://picsum.photos/seed/sekolah2/800/500', tagcls: '', important: false,
     title: 'Tim Riset Bahari Raih Juara Nasional Konservasi',
     summary: 'Tim Riset Bahari SMAN 1 Raja Ampat meraih Juara 1 Lomba Karya Ilmiah Konservasi tingkat nasional.',
     body: [
@@ -30,7 +30,7 @@ export const NEWS = [
   },
   {
     id: 3, type: 'Berita', cat: 'Kegiatan', date: '20 Juni 2026', author: 'OSIS',
-    img: 'Bersih pantai', imgUrl: 'https://loremflickr.com/800/500/beach,cleanup?lock=33', tagcls: '', important: false,
+    img: 'Bersih pantai', imgUrl: 'https://loremflickr.com/800/500/beach,cleanup?lock=33', imgFallback: 'https://picsum.photos/seed/sekolah3/800/500', tagcls: '', important: false,
     title: 'Aksi Bersih Pantai & Transplantasi Karang',
     summary: 'Aksi bersih pantai dan transplantasi karang melibatkan 300+ siswa bersama masyarakat Waisai.',
     body: [
@@ -41,7 +41,7 @@ export const NEWS = [
   },
   {
     id: 4, type: 'Pengumuman', cat: 'SPMB', date: '15 Juni 2026', author: 'Panitia SPMB',
-    img: 'Pendaftaran', imgUrl: 'https://loremflickr.com/800/500/students,school?lock=44', tagcls: 'ann', important: true,
+    img: 'Pendaftaran', imgUrl: 'https://loremflickr.com/800/500/students,school?lock=44', imgFallback: 'https://picsum.photos/seed/sekolah4/800/500', tagcls: 'ann', important: true,
     title: 'Pendaftaran Siswa Baru 2026/2027 Resmi Dibuka',
     summary: 'Pendaftaran Siswa Baru (SPMB) TA 2026/2027 resmi dibuka. Kuota 320 siswa, gelombang 1.',
     body: [
@@ -52,7 +52,7 @@ export const NEWS = [
   },
   {
     id: 5, type: 'Berita', cat: 'Kegiatan', date: '8 Juni 2026', author: 'Humas Sekolah',
-    img: 'Pianemo', imgUrl: 'https://loremflickr.com/800/500/tropical,island?lock=55', tagcls: '', important: false,
+    img: 'Pianemo', imgUrl: 'https://loremflickr.com/800/500/tropical,island?lock=55', imgFallback: 'https://picsum.photos/seed/sekolah5/800/500', tagcls: '', important: false,
     title: 'Kunjungan Konservasi ke Karst Pianemo',
     summary: 'Kelas XI mengikuti kunjungan konservasi ke gugusan karst Pianemo sebagai pembelajaran lapangan.',
     body: [
@@ -63,7 +63,7 @@ export const NEWS = [
   },
   {
     id: 6, type: 'Berita', cat: 'Akademik', date: '30 Mei 2026', author: 'Kurikulum',
-    img: 'Workshop guru', imgUrl: 'https://loremflickr.com/800/500/seminar,laptop?lock=66', tagcls: '', important: false,
+    img: 'Workshop guru', imgUrl: 'https://loremflickr.com/800/500/seminar,laptop?lock=66', imgFallback: 'https://picsum.photos/seed/sekolah6/800/500', tagcls: '', important: false,
     title: 'Workshop Literasi Digital untuk Guru',
     summary: 'Guru mengikuti workshop literasi digital untuk memperkuat pembelajaran berbasis teknologi.',
     body: [
