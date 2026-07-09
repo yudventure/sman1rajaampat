@@ -87,7 +87,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="wrap" style={{ position: 'relative', zIndex: 2, paddingTop: 120, paddingBottom: 120 }}>
+        <div className="wrap" style={{ position: 'relative', zIndex: 2, paddingTop: 'clamp(64px, 12vw, 120px)', paddingBottom: 'clamp(56px, 11vw, 120px)' }}>
           <div style={{ maxWidth: 640 }}>
             <span className="eyebrow reveal">{school.hero.eyebrow}</span>
             <h1 className="dispxl reveal" style={{ marginTop: 18, animationDelay: '.05s' }}>
@@ -162,7 +162,7 @@ export default function Home() {
             <div className="statbar2">
               {STATS.map((st, i) => (
                 <div className="glasscard rv" key={st.l} style={{ '--rvd': i * 0.09 + 's' }}>
-                  <div className="serif" style={{ fontSize: 40, fontWeight: 500, lineHeight: 1, color: '#fff' }}><CountUp value={st.n} /></div>
+                  <div className="serif" style={{ fontSize: 'clamp(32px, 9vw, 40px)', fontWeight: 500, lineHeight: 1, color: '#fff' }}><CountUp value={st.n} /></div>
                   <div style={{ fontSize: 13.5, color: '#a9c4e2', marginTop: 8 }}>{st.l}</div>
                 </div>
               ))}

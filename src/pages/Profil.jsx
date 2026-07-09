@@ -39,7 +39,7 @@ export default function Profil() {
             />
             <div style={{ maxWidth: 580, marginLeft: i === 0 ? 0 : 'auto' }}>
               <span className="eyebrow" style={{ color: '#9cc4ea' }}>{s.tag}</span>
-              <p className="serif ital" style={{ fontSize: 24, lineHeight: 1.55, margin: '16px 0 26px' }}>{'“' + s.q + '”'}</p>
+              <p className="serif ital" style={{ fontSize: 'clamp(19px, 5vw, 24px)', lineHeight: 1.55, margin: '16px 0 26px' }}>{'“' + s.q + '”'}</p>
               <b style={{ display: 'block', fontSize: 16 }}>{s.nm}</b>
               <span style={{ fontSize: 13.5, color: '#bcd0e8', display: 'block', marginTop: 3 }}>{s.role}</span>
             </div>
