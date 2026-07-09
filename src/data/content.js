@@ -149,41 +149,11 @@ export const SAMBUTAN = [
   },
 ]
 
-// ---- GALERI (foto sementara — ganti dengan dokumentasi asli sekolah) ----
-const gal = (id, cat, caption, kw) => ({
-  id, cat, caption,
-  img: cat,
-  title: caption,
-  imgUrl: `https://loremflickr.com/640/480/${kw}?lock=${100 + id}`,
-  imgFallback: `https://picsum.photos/seed/galeri${id}/640/480`,
-})
-export const GALERI = [
-  gal(1,  'Kegiatan Laut', 'Aksi bersih pantai pesisir Waisai', 'beach,cleanup'),
-  gal(2,  'Kegiatan Laut', 'Edukasi snorkeling & konservasi', 'snorkeling,reef'),
-  gal(3,  'Kegiatan Laut', 'Transplantasi karang area binaan', 'coral,reef'),
-  gal(4,  'Akademik', 'Praktikum biologi di Lab Bahari', 'laboratory,students'),
-  gal(5,  'Akademik', 'Literasi digital di lab komputer', 'computer,classroom'),
-  gal(6,  'Akademik', 'Suasana belajar di perpustakaan', 'library,books'),
-  gal(7,  'Upacara', 'Upacara bendera Senin pagi', 'flag,ceremony'),
-  gal(8,  'Ekstrakurikuler', 'Latihan pramuka akhir pekan', 'scouts,camping'),
-  gal(9,  'Olahraga', 'Turnamen voli antar kelas', 'volleyball,sport'),
-  gal(10, 'Olahraga', 'Futsal di lapangan terpadu', 'futsal,soccer'),
-  gal(11, 'Olahraga', 'Latihan basket sore hari', 'basketball,court'),
-  gal(12, 'Seni & Budaya', 'Tari tradisional Papua', 'traditional,dance'),
-  gal(13, 'Seni & Budaya', 'Paduan suara sekolah', 'choir,singing'),
-  gal(14, 'Seni & Budaya', 'Pentas seni akhir tahun', 'stage,performance'),
-  gal(15, 'Prestasi', 'Penyerahan piala juara nasional', 'trophy,award'),
-  gal(16, 'Fasilitas', 'Gedung utama sekolah', 'school,building'),
-  gal(17, 'Fasilitas', 'Asrama siswa antar pulau', 'dormitory,building'),
-  gal(18, 'Kegiatan Laut', 'Pembelajaran lapangan Pianemo', 'tropical,island'),
-]
-
 // Public navigation (label, route)
 export const NAV = [
   ['Beranda', 'home'],
   ['Profil', 'profil'],
   ['Layanan', 'layanan'],
   ['Berita', 'berita'],
-  ['Galeri', 'galeri'],
   ['Kontak', 'kontak'],
 ]

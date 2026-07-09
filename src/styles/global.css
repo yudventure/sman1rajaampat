@@ -163,16 +163,6 @@ textarea.inp{resize:vertical;min-height:110px}
 @keyframes rev{to{opacity:1;transform:none}}
 @keyframes drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
-/* ---- galeri ---- */
-.galgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-@media(max-width:900px){.galgrid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.galgrid{grid-template-columns:1fr}}
-.galcard{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/3;border:1px solid var(--line);background:var(--paper2)}
-.galcard img{transition:transform .5s ease}
-.galcard:hover img{transform:scale(1.06)}
-.galtag{position:absolute;top:10px;left:10px;z-index:2;background:rgba(255,255,255,.92)}
-.galcap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:28px 14px 12px;background:linear-gradient(0deg,rgba(13,71,126,.85),transparent);color:#fff;font-size:13.5px;font-weight:600;line-height:1.35}
-
 /* ---- pointer follower (titik solid + lingkaran transparan mengejar) ---- */
 .cursor-dot,.cursor-ring{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:9999;opacity:0;transition:opacity .25s}
 .cursor-dot{width:8px;height:8px;background:var(--sea)}

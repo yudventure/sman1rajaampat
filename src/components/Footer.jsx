@@ -30,7 +30,6 @@ export default function Footer() {
               <a href={to('pendaftaran')} onClick={link('pendaftaran')}>Pendaftaran</a>
               <a href={to('layanan')} onClick={link('layanan')}>Layanan</a>
               <a href={to('berita')} onClick={link('berita')}>Berita</a>
-              <a href={to('galeri')} onClick={link('galeri')}>Galeri</a>
             </div>
           </div>
 
