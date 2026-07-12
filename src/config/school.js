@@ -12,6 +12,7 @@ import heroImage from '../assets/hero-siswa.png'
 import medalistImage from '../assets/siswa-medali.png'
 import kepalaDinasImage from '../assets/kepala-dinas.png'
 import kepalaSekolahImage from '../assets/kepala-sekolah.png'
+import ministryLogo from '../assets/tut-wuri-handayani.png' // logo Tut Wuri Handayani (Kemdikbud)
 
 export const school = {
   // -- Identity --
@@ -36,7 +37,7 @@ export const school = {
   },
 
   // -- Assets --
-  assets: { logo, heroImage, medalistImage, kepalaDinasImage, kepalaSekolahImage },
+  assets: { logo, heroImage, medalistImage, kepalaDinasImage, kepalaSekolahImage, ministryLogo },
 
   // -- Hero copy (Beranda) --
   hero: {

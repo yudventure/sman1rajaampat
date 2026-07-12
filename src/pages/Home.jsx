@@ -104,6 +104,7 @@ export default function Home() {
 
       {/* ============ SERVICES ============ */}
       <section className="sec posrel ohide">
+        <img className="secmark secmark-l" src={school.assets.ministryLogo} alt="" />
         <img className="secmark" src={school.assets.logo} alt="" />
         <div className="wrap posrel">
           <div className="fx ac jb fxwrap gap16 posrel" style={{ marginBottom: 36 }}>
