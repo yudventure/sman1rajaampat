@@ -87,7 +87,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="wrap wrapfull" style={{ position: 'relative', zIndex: 2, paddingTop: 'clamp(64px, 12vw, 120px)', paddingBottom: 'clamp(56px, 11vw, 120px)' }}>
+        <div className="wrap" style={{ position: 'relative', zIndex: 2, paddingTop: 'clamp(64px, 12vw, 120px)', paddingBottom: 'clamp(56px, 11vw, 120px)' }}>
           <div style={{ maxWidth: 640 }}>
             <span className="eyebrow reveal">{school.hero.eyebrow}</span>
             <h1 className="dispxl reveal" style={{ marginTop: 18, animationDelay: '.05s' }}>
@@ -151,7 +151,7 @@ export default function Home() {
 
       {/* ============ STATS ============ */}
       <section className="posrel" style={{ background: 'var(--seadeep)', color: '#fff', zIndex: 0 }}>
-        <div className="wrap wrapfull sec posrel">
+        <div className="wrap sec posrel">
           <img className="statboy" src={school.assets.medalistImage} alt={`Siswa berprestasi ${school.shortName}`} />
           <div className="grid-2" style={{ alignItems: 'center', gap: 48 }}>
             <div className="rv rv-l" style={{ maxWidth: 330 }}>
