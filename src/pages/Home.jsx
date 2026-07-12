@@ -88,12 +88,12 @@ export default function Home() {
         </div>
 
         <div className="wrap" style={{ position: 'relative', zIndex: 2, paddingTop: 'clamp(64px, 12vw, 120px)', paddingBottom: 'clamp(56px, 11vw, 120px)' }}>
-          <div style={{ maxWidth: 640 }}>
+          <div style={{ maxWidth: 'clamp(640px, 46vw, 720px)' }}>
             <span className="eyebrow reveal">{school.hero.eyebrow}</span>
             <h1 className="dispxl reveal" style={{ marginTop: 18, animationDelay: '.05s' }}>
               <HeroTitle text={school.hero.title} />
             </h1>
-            <p className="lead reveal" style={{ marginTop: 22, maxWidth: 620, animationDelay: '.12s' }}>{school.hero.lead}</p>
+            <p className="lead reveal" style={{ marginTop: 22, maxWidth: 'clamp(620px, 44vw, 690px)', animationDelay: '.12s' }}>{school.hero.lead}</p>
             <div className="fx gap12 fxwrap reveal" style={{ marginTop: 32, animationDelay: '.18s' }}>
               <button className="btn btn-p" onClick={() => go('pendaftaran')}>Daftar Siswa Baru<ArrowRight /></button>
               <button className="btn btn-l" onClick={() => go('profil')}>Kenali Sekolah</button>
