@@ -207,6 +207,8 @@ textarea.inp{resize:vertical;min-height:110px}
 .fxwrap{flex-wrap:wrap}
 .gap8{gap:8px}.gap10{gap:10px}.gap12{gap:12px}.gap14{gap:14px}.gap16{gap:16px}.gap24{gap:24px}
 
+.wrap.wrapfull{max-width:none;padding-left:clamp(20px,5vw,80px);padding-right:clamp(20px,5vw,80px)}
+
 @media(max-width:900px){
   .nav{display:none}.burger{display:flex}
   .grid-3,.grid-4,.grid-news,.statbar,.fgrid{grid-template-columns:1fr 1fr}

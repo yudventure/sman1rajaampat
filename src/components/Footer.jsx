@@ -10,7 +10,7 @@ export default function Footer() {
 
   return (
     <footer className="footer">
-      <div className="wrap" style={{ paddingTop: 64, paddingBottom: 34 }}>
+      <div className="wrap wrapfull" style={{ paddingTop: 64, paddingBottom: 34 }}>
         <div className="fgrid">
           <div>
             <div className="fx ac gap12" style={{ marginBottom: 16 }}>
