@@ -154,7 +154,7 @@ export default function Home() {
       <section className="posrel" style={{ background: 'var(--seadeep)', color: '#fff', zIndex: 0 }}>
         <div className="wrap sec posrel">
           <img className="statboy" src={school.assets.medalistImage} alt={`Siswa berprestasi ${school.shortName}`} />
-          <div className="grid-2" style={{ alignItems: 'center', gap: 48 }}>
+          <div className="grid-2" style={{ alignItems: 'center', gap: 56 }}>
             <div className="rv rv-l" style={{ maxWidth: 330 }}>
               <span className="eyebrow" style={{ color: '#9cc4ea' }}>Dalam Angka</span>
               <h2 className="displg" style={{ color: '#fff', marginTop: 12 }}>Sekolah bahari yang terus bertumbuh.</h2>
@@ -163,7 +163,7 @@ export default function Home() {
             <div className="statbar2">
               {STATS.map((st, i) => (
                 <div className="glasscard rv" key={st.l} style={{ '--rvd': i * 0.09 + 's' }}>
-                  <div className="serif" style={{ fontSize: 'clamp(32px, 9vw, 40px)', fontWeight: 500, lineHeight: 1, color: '#fff' }}><CountUp value={st.n} /></div>
+                  <div className="serif" style={{ fontSize: 'clamp(28px, 8vw, 36px)', fontWeight: 500, lineHeight: 1, color: '#fff' }}><CountUp value={st.n} /></div>
                   <div style={{ fontSize: 13.5, color: '#a9c4e2', marginTop: 8 }}>{st.l}</div>
                 </div>
               ))}
