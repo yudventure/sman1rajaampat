@@ -70,7 +70,7 @@ p{margin:0}
 .handwrap{position:absolute;right:var(--imgoff);bottom:0;width:min(68%,1240px);aspect-ratio:16/9;pointer-events:none;z-index:3}
 .doodle{position:absolute;pointer-events:none;color:var(--sea);opacity:.45;animation:drift 6s ease-in-out infinite}
 .doodle svg{display:block}
-.secmark{position:absolute;top:50%;right:0;height:100%;transform:translate(25%,-50%);opacity:.1;pointer-events:none}
+.secmark{position:absolute;top:50%;right:0;height:100%;transform:translate(25%,-50%);opacity:.05;pointer-events:none}
 .secmark-l{left:0;right:auto;transform:translate(-25%,-50%)}
 .statboy{position:absolute;bottom:0;left:40%;transform:translateX(-50%);height:calc(100% + 60px);z-index:-1;pointer-events:none;filter:drop-shadow(0 14px 28px rgba(6,42,74,.35))}
 @media(max-width:1100px){.statboy{display:none}}
